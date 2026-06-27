@@ -38,4 +38,4 @@ jobs:
           firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
             --app 1:577439199236:android:3a45f689b269d76b394551 \
             --testers "shravani.s@nativewit.in" \
-            --token ${{ secrets.FIREBASE_TOKEN }}
+            --token ${{ secrets.FIREBASE_TOKEN1 }}
