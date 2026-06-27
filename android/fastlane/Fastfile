@@ -1,0 +1,25 @@
+default_platform(:android)
+
+platform :android do
+
+  desc "Build Flutter APK"
+  lane :build_flutter do
+    sh("cd .. && flutter clean")
+    sh("cd .. && flutter pub get")
+    sh("cd .. && flutter build apk --release")
+  end
+
+  desc "Build and upload APK to Firebase App Distribution"
+  lane :firebase_distribution do
+    build_flutter
+
+    firebase_app_distribution(
+      app: "1:577439199236:android:3a45f689b269d76b394551",
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
+      testers: "shravani.s@nativewit.in",
+      release_notes: "Build uploaded via Fastlane"
+    )
+  end
+
+end
